@@ -7,7 +7,7 @@ public class HttpRequest {
 
     private final String rawRequest;
     private String uri;
-    private HttpMethod method;
+    private final HttpMethod method;
     private Map<String, String> parameters;
 
     public HttpRequest(String rawRequest) {
