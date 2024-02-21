@@ -1,9 +1,6 @@
 package ru.gordeev.http.server;
 
-import ru.gordeev.http.server.processors.HelloWorldRequestProcessor;
-import ru.gordeev.http.server.processors.OperationAddRequestProcessor;
-import ru.gordeev.http.server.processors.RequestProcessor;
-import ru.gordeev.http.server.processors.UnknownHttpRequestProcessor;
+import ru.gordeev.http.server.processors.*;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,15 +14,16 @@ public class Dispatcher {
     public Dispatcher() {
         this.router = new HashMap<>();
         this.unknownRequestProcessor = new UnknownHttpRequestProcessor();
-        this.router.put("/add", new OperationAddRequestProcessor());
-        this.router.put("/", new HelloWorldRequestProcessor());
+        this.router.put("GET /add", new OperationAddRequestProcessor());
+        this.router.put("GET /hello_world", new HelloWorldRequestProcessor());
+        this.router.put("POST /body", new PostBodyDemoRequestProcessor());
     }
 
     public void execute(HttpRequest request, OutputStream outputStream) throws IOException {
-        if (!router.containsKey(request.getUri())) {
+        if (!router.containsKey(request.getRoute())) {
             unknownRequestProcessor.execute(request, outputStream);
             return;
         }
-        router.get(request.getUri()).execute(request, outputStream);
+        router.get(request.getRoute()).execute(request, outputStream);
     }
 }
