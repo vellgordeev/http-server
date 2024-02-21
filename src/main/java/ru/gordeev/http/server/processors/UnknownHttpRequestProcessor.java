@@ -10,6 +10,6 @@ public class UnknownHttpRequestProcessor implements RequestProcessor {
 
     @Override
     public void execute(HttpRequest request, OutputStream outputStream) throws IOException {
-        outputStream.write(String.format(responseTemplate, "Unknown request").getBytes(StandardCharsets.UTF_8));
+        outputStream.write(String.format(unknownResponseTemplate, request.getUri()).getBytes(StandardCharsets.UTF_8));
     }
 }

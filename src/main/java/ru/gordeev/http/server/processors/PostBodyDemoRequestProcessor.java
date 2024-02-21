@@ -20,6 +20,6 @@ public class PostBodyDemoRequestProcessor implements RequestProcessor {
         Product product = gson.fromJson(request.getBody(), Product.class);
         System.out.println(product);
 
-        outputStream.write(String.format(responseTemplate, "").getBytes(StandardCharsets.UTF_8));
+        outputStream.write(String.format(htmlResponseTemplate, "").getBytes(StandardCharsets.UTF_8));
     }
 }

@@ -15,7 +15,7 @@ public class OperationAddRequestProcessor implements RequestProcessor {
             Integer b = Integer.parseInt(request.getParameters().get("b"));
             String result = a + " + " + b + " = " + (a + b);
 
-            outputStream.write(String.format(responseTemplate, result).getBytes(StandardCharsets.UTF_8));
+            outputStream.write(String.format(htmlResponseTemplate, result).getBytes(StandardCharsets.UTF_8));
         }
     }
 }

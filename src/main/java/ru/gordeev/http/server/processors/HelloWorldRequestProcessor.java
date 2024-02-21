@@ -10,6 +10,6 @@ public class HelloWorldRequestProcessor implements RequestProcessor {
 
     @Override
     public void execute(HttpRequest request, OutputStream outputStream) throws IOException {
-        outputStream.write(String.format(responseTemplate, "Hello world!").getBytes(StandardCharsets.UTF_8));
+        outputStream.write(String.format(htmlResponseTemplate, "Hello world!").getBytes(StandardCharsets.UTF_8));
     }
 }
